@@ -16,10 +16,10 @@ jobs:
     - name: Deploy
       uses: webfactory/ssh-agent@v0.5.0
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        server-ip: ${{ secrets.SERVER_IP }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ secrets.SERVER_IP }}
         server-port: ${{ secrets.SERVER_PORT }}
-        remote-username: ${{ secrets.REMOTE_USERNAME }}
+        username: ${{ secrets.REMOTE_USERNAME }}
         run: |
           docker-compose up -d
 
