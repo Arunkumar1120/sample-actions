@@ -18,10 +18,10 @@ jobs:
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
         with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          host: ${{ secrets.SERVER_IP }}
-          server-port: ${{ secrets.SERVER_PORT }}
-          username: ${{ secrets.REMOTE_USERNAME }}
+          key: ${{ secrets.KEY }}
+          host: ${{ secrets.HOST }}
+          server-port: ${{ secrets.PORT }}
+          username: ${{ secrets.USERNAME }}
 
 
       - name: Login to Docker Hub
