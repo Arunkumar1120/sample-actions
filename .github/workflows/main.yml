@@ -10,12 +10,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Update known_hosts
-        run: |+
-          mkdir -p ~/.ssh
-          ssh-keyscan 43.204.38.88 >> ~/.ssh/known_hosts 
+
             
       - name: Deploy to Server
-        run: |
-          sshpass -p ${{ secrets.REMOTE_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USERNAME }}@${{ secrets.SERVER_IP }} 'sudo docker-compose up -d'     
+        uses: easingthemes/ssh-deploy@v2.1.5
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SERVER_IP }}
+          REMOTE_USER: ${{ secrets.REMOTE_USERNAME }}
+          REMOTE_PORT: ${{ secrets.SERVER_PORT }}
 
