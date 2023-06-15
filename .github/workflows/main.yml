@@ -20,7 +20,7 @@ jobs:
           
     - name: Deploy
       run: |
-        ssh ubuntu@43.204.38.88 'docker-compose up -d'
+        ssh ubuntu@43.204.38.88 'sudo docker-compose up -d'
 
 
     - name: Login to Docker Hub
