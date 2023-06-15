@@ -19,17 +19,19 @@ jobs:
       - name: Deploy with docker-compose
         run: |
           docker-compose up -d
+          
+      - name: Pull image from server
+        run: docker-compose pull sampleimage
 
-      - name: Login to Docker Hub
+      - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Tag Docker image
-        run: docker tag sampleimage hackerarun/repo:latest
-        
-      - name: Push Docker image
-        run: docker push hackerarun/repo:latest
+      - name: Tag and push image to Docker Hub
+        run: |
+          docker tag sampleimage hackerarun/sampleimage
+          docker push hackerarun/sampleimage
             
 
