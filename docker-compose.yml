@@ -1,7 +1,10 @@
 version: "3.3"
 services:
   samplefolder:
-    build: ./samplefolder
+    build:
+      context: ./samplefolder
+      dockerfile: Dockerfile
+    image: sampleimage
     container_name: samplecontainerr
     ports:
       - "3000:3000"
