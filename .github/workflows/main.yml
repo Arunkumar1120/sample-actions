@@ -14,7 +14,6 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Deploy
-      uses: webfactory/ssh-agent@v0.5.0
       with:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         host: ${{ secrets.SERVER_IP }}
