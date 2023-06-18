@@ -25,7 +25,7 @@ jobs:
       - name: Deploy with docker-compose
         run: |
           sudo docker-compose up -d --build
-          sudo docker tag sampleimage ${{ secrets.NEXUS_URL }}/sampleimage:v1
-
+          sudo docker tag sampleimage 54.157.132.35:8081/sampleimage
+          sudo docker push 54.157.132.35:8081/sampleimage
             
 
