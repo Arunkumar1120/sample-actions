@@ -12,10 +12,22 @@ jobs:
       SERVER_USERNAME: ${{ secrets.REMOTE_USERNAME }}
       SERVER_PORT: ${{ secrets.SERVER_PORT }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+      NEXUS_URL: ${{ secrets.NEXUS_URL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
+
+      - name: Log in to Nexus
+        run: docker login -u ${{ secrets.NEXUS_USERNAME }} -p ${{ secrets.NEXUS_PASSWORD }} ${{ secrets.NEXUS_URL }}
+      
+      - name: Build and push Docker Compose image
+        run: docker compose build
+      
+      - name: Push Docker Compose image
+        run: docker compose push
+
       - name: Deploy with docker-compose
         run: |
           sudo docker-compose up -d --build
