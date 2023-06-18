@@ -4,18 +4,8 @@ services:
     build:
       context: ./samplefolder
       dockerfile: Dockerfile
-    image: 54.157.132.35:8081/GithubAction-Docker/sampleimage:v1
+    image: sampleimage
     container_name: samplecontainerr
     ports:
       - "3000:3000"
     restart: on-failure
-
-  push-to-nexus:
-    image: 54.157.132.35:8081/GithubAction-Docker/sampleimage:v1
-    container_name: nexus-push
-    command: >
-      /bin/sh -c "
-      docker login 54.157.132.35:8081 -u admin -p Arun@1120 &&
-      docker push 54.157.132.35:8081/GithubAction-Docker/sampleimage:v1"
-    depends_on:
-      - samplefolder
