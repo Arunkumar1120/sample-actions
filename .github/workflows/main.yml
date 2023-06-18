@@ -22,18 +22,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Log in to Nexus
-        run: docker login -u ${{ secrets.NEXUS_USERNAME }} -p ${{ secrets.NEXUS_PASSWORD }} ${{ secrets.NEXUS_URL }}
-          
-      - name: Build and push Docker Compose image
-        run: docker compose build
-      
-      - name: Push Docker Compose image
-        run: docker compose push
-
       - name: Deploy with docker-compose
         run: |
           sudo docker-compose up -d --build
+          sudo docker tag sampleimage ${{ secrets.NEXUS_URL }}/sampleimage:v1
 
             
 
