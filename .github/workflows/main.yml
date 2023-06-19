@@ -26,12 +26,4 @@ jobs:
         run: |
           sudo docker-compose up -d --build
 
-      - name: Nexus Repo Publish
-        uses: sonatype-nexus-community/nexus-repo-github-action@master
-        with:
-          serverUrl: http://54.157.132.35:8081/repository/GithubAction-Docker/
-          username: ${{ secrets.NEXUS_USERNAME }}
-          password: ${{ secrets.NEXUS_PASSWORD }}
-          repository: GithubAction-Docker
-          
 
